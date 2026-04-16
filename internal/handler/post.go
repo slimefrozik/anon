@@ -69,9 +69,6 @@ func (h *PostHandler) Create(c *gin.Context) {
 		return
 	}
 
-	h.rdb.Incr(c.Request.Context(), "post_rate:"+userID)
-	h.rdb.Expire(c.Request.Context(), "post_rate:"+userID, time.Hour)
-
 	resp := model.NewPostResponse(model.Post{
 		ID:          postID,
 		ContentType: contentType,
