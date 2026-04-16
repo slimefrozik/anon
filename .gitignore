@@ -2,6 +2,7 @@ bin/
 media/
 .env
 *.exe
+*.exe~
 *.dll
 *.so
 *.dylib

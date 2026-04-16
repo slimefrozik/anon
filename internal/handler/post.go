@@ -41,13 +41,6 @@ func (h *PostHandler) Create(c *gin.Context) {
 
 	userID := middleware.GetUserID(c)
 
-	var count int
-	err := h.rdb.Get(c.Request.Context(), "post_rate:"+userID).Scan(&count)
-	if err == nil && count >= 1 {
-		c.JSON(http.StatusTooManyRequests, gin.H{"error": "one post per hour"})
-		return
-	}
-
 	contentType := model.ContentTypeText
 	if req.ContentType == "image" {
 		contentType = model.ContentTypeImage
