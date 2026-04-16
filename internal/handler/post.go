@@ -8,7 +8,6 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5/pgxpool"
-	"github.com/redis/go-redis/v9"
 
 	"github.com/slimefrozik/anon/internal/middleware"
 	"github.com/slimefrozik/anon/internal/model"
@@ -17,14 +16,13 @@ import (
 
 type PostHandler struct {
 	pool         *pgxpool.Pool
-	rdb          *redis.Client
 	feedService  *service.FeedService
 	abuseService *service.AbuseService
 	mediaBaseURL string
 }
 
-func NewPostHandler(pool *pgxpool.Pool, rdb *redis.Client, feedSvc *service.FeedService, abuseSvc *service.AbuseService, mediaBaseURL string) *PostHandler {
-	return &PostHandler{pool: pool, rdb: rdb, feedService: feedSvc, abuseService: abuseSvc, mediaBaseURL: mediaBaseURL}
+func NewPostHandler(pool *pgxpool.Pool, feedSvc *service.FeedService, abuseSvc *service.AbuseService, mediaBaseURL string) *PostHandler {
+	return &PostHandler{pool: pool, feedService: feedSvc, abuseService: abuseSvc, mediaBaseURL: mediaBaseURL}
 }
 
 func (h *PostHandler) Create(c *gin.Context) {

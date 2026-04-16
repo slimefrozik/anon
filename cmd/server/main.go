@@ -46,7 +46,7 @@ func main() {
 	lifecycleSvc := service.NewPostLifecycleService(pool, rdb)
 
 	sessionHandler := handler.NewSessionHandler(pool, rdb, cfg)
-	postHandler := handler.NewPostHandler(pool, rdb, feedSvc, abuseSvc, cfg.S3Endpoint)
+	postHandler := handler.NewPostHandler(pool, feedSvc, abuseSvc, cfg.S3Endpoint)
 	reactionHandler := handler.NewReactionHandler(reactionSvc)
 	commentHandler := handler.NewCommentHandler(commentSvc, abuseSvc)
 	notificationHandler := handler.NewNotificationHandler(commentSvc, pool)
