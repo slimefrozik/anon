@@ -1,0 +1,10 @@
+bin/
+media/
+.env
+*.exe
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+vendor/
